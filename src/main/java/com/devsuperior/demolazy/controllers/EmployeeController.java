@@ -1,5 +1,7 @@
 package com.devsuperior.demolazy.controllers;
 
+import com.devsuperior.demolazy.entities.Employee;
+import com.devsuperior.demolazy.services.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.devsuperior.demolazy.dto.EmployeeDTO;
 import com.devsuperior.demolazy.services.EmployeeService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/employees")
@@ -21,5 +25,11 @@ public class EmployeeController {
 	public ResponseEntity<EmployeeDTO> findById(@PathVariable Long id) {
 		EmployeeDTO obj = service.findById(id);
 		return ResponseEntity.ok(obj);
+	}
+
+	@GetMapping()
+	public ResponseEntity<List<EmployeeDTO>> findAll() {
+		List<EmployeeDTO> list = service.findAll();
+		return ResponseEntity.ok(list);
 	}
 }
